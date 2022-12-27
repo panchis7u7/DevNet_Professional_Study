@@ -1,0 +1,10 @@
+# Terraform related files. 
+terraform/.terraform
+terraform/.terraform.lock.hcl
+terraform/terraform.tfstate
+
+# Virtual environment.
+venv/
+
+# Environment variables files.
+.env/
