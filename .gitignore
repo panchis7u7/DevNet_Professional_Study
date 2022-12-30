@@ -8,3 +8,6 @@ venv/
 
 # Environment variables files.
 .env/
+
+# PostgreSQL persistent data path.
+data/
