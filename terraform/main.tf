@@ -10,9 +10,9 @@ data "external" "env" {
 
 # Show the results of running the data source. This is a map of environment
 # variable names to their values.
-output "GetUser" {
-  value = data.external.env.result["XCP_USER"]
-}
+# output "GetUser" {
+#   value = data.external.env.result["XCP_USER"]
+# }
 
 #############################################################################
 # Template, Storage and Networking referencing.
@@ -103,5 +103,55 @@ resource "xenorchestra_vm" "TrueNAS" {
 }
 
 #############################################################################
-# Future VM.
+# Triple Ubuntu Server VM's Variable.
 #############################################################################
+
+variable "instances" {
+  description = "Number of Ubuntu Server nodes for Kubernetes configuration."
+  type        = number
+  default     = 3
+}
+
+#############################################################################
+# Triple Ubuntu Server VM's.
+#############################################################################
+
+resource "xenorchestra_vm" "Ubuntu-Server" {
+  memory_max        = 6442450944
+  cpus              = 2
+  name_label        = "Ubuntu Server 22.04-${count.index}" #format("%s %d", "Ubuntu Server", var.instances)
+  name_description  = "Ubuntu Server based k0s nodes"
+  template          = data.xenorchestra_template.ubuntu_template.id
+  auto_poweron      = true
+  exp_nested_hvm    = true
+  hvm_boot_firmware = "bios"
+  count             = var.instances
+
+  cdrom {
+    id = "a52d79ab-304a-42af-97f0-28e5238712d0"
+  }
+
+  network {
+    network_id = data.xenorchestra_network.net.id
+  }
+  disk {
+    sr_id      = "ef1d6d1e-843d-d387-b6f1-d581ea75b8a2"
+    name_label = "US2204-Node${count.index}-Disk"
+    size       = 26843545600
+  }
+
+  tags = [
+    "Ubuntu Server 2204",
+    "Jammy Jellyfish",
+    "Kubernetes-Node"
+  ]
+
+  timeouts {
+    create = "20m"
+  }
+
+}
+
+# xe cd-list => Displays all ISO's available in XCP-ng.
+# xe vm-disk-list => Displays all storages assigned to the created VM's.
+# xe template-list => Shows all available templates details.
