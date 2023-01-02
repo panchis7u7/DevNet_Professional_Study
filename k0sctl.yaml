@@ -1,0 +1,27 @@
+apiVersion: k0sctl.k0sproject.io/v1beta1
+kind: Cluster
+metadata:
+  name: k0s-devnet-cluster
+spec:
+  hosts:
+    - ssh:
+        address: 192.168.1.240
+        user: panchis_us0
+        port: 22
+        keyPath: panchis/.ssh/id_ed25519
+      role: controller+worker
+    - ssh:
+        address: 192.168.1.241
+        user: panchis_us1
+        port: 22
+        keyPath: panchis/.ssh/id_ed25519
+      role: worker
+    - ssh:
+        address: 192.168.1.242
+        user: panchis_us2
+        port: 22
+        keyPath: panchis/.ssh/id_ed25519
+      role: worker
+  k0s:
+    version: 1.25.4+k0s.0
+    dynamicConfig: false
