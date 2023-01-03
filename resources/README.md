@@ -42,6 +42,11 @@ Once all the certificates are generated, copy the id's from the controller pc to
 ```shell
 ssh-copy-id <user>@<server_ip>
 ```
+If the configuration host requires a passphrase to access the ssh keys, use:
+```shell
+eval `ssh-agent`
+ssh-add
+```
 If wanted to avoid strict host checking, use the aliased versions. (place in .zshrc)
 ```shell
 alias ssh0='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o LogLevel=ERROR'
@@ -58,4 +63,18 @@ Configuration directory.
 Apply configuration.
 ```shell
 ~/k0sctl apply --config k0sctl.yaml
+```
+NOTE: Sudo passwordless user in the vm's, can be acheived by editing /etc/sudoers and adding the line on the end of the file:
+```shell
+<user> ALL=(ALL:ALL) NOPASSWD:ALL
+```
+After installing the k0s cluster, we need to generate a configuration file for the cluster for future use of kubctl.
+```shell
+~/k0sctl kubeconfig > kubeconfig.yaml
+source KUBECONFIG=<path_to_kubeconfig.yaml>
+```
+Right after generating the config file, we can start using kubectl.
+```shell
+# To install kubernetes:
+./install_kubernetes
 ```
