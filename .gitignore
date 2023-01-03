@@ -12,3 +12,6 @@ venv/
 
 # PostgreSQL persistent data path.
 data/
+
+# Kubernetes.
+kubeconfig.yaml
