@@ -16,5 +16,5 @@ INSERT INTO games (id, title, lastTimePlayed, hoursPlayed, releaseDate, image) V
 INSERT INTO games (id, title, lastTimePlayed, hoursPlayed, releaseDate, image) VALUES ('83c36994-4d8b-4a15-bff6-addd30ff959c', 'Elden Ring', '2021-04-22 17:53:43', 22.54, '2021-02-11', 'https://image.api.playstation.com/vulcan/ap/rnd/202110/2000/phvVT0qZfcRms5qDAk0SI3CM.png');
 INSERT INTO games (id, title, lastTimePlayed, hoursPlayed, releaseDate, image) VALUES ('51b6a98b-1ed1-4b79-8ac6-13ad0c42854b', 'Red Dead Redemption 2', '2019-08-14 19:23:22', 1.94, '2022-12-22', 'https://image.api.playstation.com/gs2-sec/appkgo/prod/CUSA08519_00/12/i_3da1cf7c41dc7652f9b639e1680d96436773658668c7dc3930c441291095713b/i/icon0.png');
 
--- cat <path_to_this_file>/data.sql | sudo docker exec -i <postgres_container_name> psql -U $DATABASE_USER -d $DATABASE_DB
--- sudo docker exec -it <postgres_container_name> psql -U $DATABASE_USER -d $DATABASE_DB -c "SELECT * FROM games;"
+-- cat <path_to_this_file>/data.sql | sudo docker exec -i <postgres_container_name> psql -U $POSTGRES_USER $POSTGRES_DB
+-- sudo docker exec -it <postgres_container_name> psql -U $POSTGRES_USER -d $POSTGRES_DB -c "SELECT * FROM games;"
