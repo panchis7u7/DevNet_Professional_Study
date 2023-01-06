@@ -78,3 +78,9 @@ Right after generating the config file, we can start using kubectl.
 # To install kubernetes:
 ./install_kubernetes
 ```
+
+## Frontend.
+```shell
+wget -qO /bin/pnpm "https://github.com/pnpm/pnpm/releases/latest/download/pnpm-linuxstatic-x64" && chmod +x /bin/pnpm
+pnpm create next-app --typescript
+```
