@@ -17,6 +17,6 @@ class GameController {
     val gameService: IGameService? = null
 
     @GetMapping("/games")
-    fun getGames(): ResponseEntity<List<Game>> = ResponseEntity(gameService!!.listAll(), HttpStatus.OK)
+    fun getGames(): ResponseEntity<List<Game>> = gameService!!.listAll()
 
 }
