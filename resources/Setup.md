@@ -84,3 +84,12 @@ Right after generating the config file, we can start using kubectl.
 wget -qO /bin/pnpm "https://github.com/pnpm/pnpm/releases/latest/download/pnpm-linuxstatic-x64" && chmod +x /bin/pnpm
 pnpm create next-app --typescript
 ```
+
+To Know:
+RUN has 2 forms:
++ RUN <command> (shell form, the command is run in a shell, which by default is /bin/sh -c on Linux or cmd /S /C on Windows)
++ RUN ["executable", "param1", "param2"] (exec form)
+
+Unlike the shell form, the exec form does not invoke a command shell. This means that normal shell processing does not happen. For example, RUN [ "echo", "$HOME" ] will not do variable substitution on $HOME. If you want shell processing then either use the shell form or execute a shell directly, for example: RUN [ "sh", "-c", "echo $HOME" ]. When using the exec form and executing a shell directly, as in the case for the shell form, it is the shell that is doing the environment variable expansion, not docker.
+
+sudo docker build -t <image-name:version> <dockerfile-dir> => Build docker image.

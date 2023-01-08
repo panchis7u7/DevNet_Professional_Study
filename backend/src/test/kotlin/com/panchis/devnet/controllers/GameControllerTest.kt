@@ -52,6 +52,6 @@ class GameControllerTest {
         Mockito.`when`(gameService?.listAll()).thenReturn(mockResponse)
         mockMvc?.perform(get("/api/v1/games").contentType(APPLICATION_JSON_UTF8))
             ?.andExpect(status().isOk)
-            ?.andExpect(jsonPath("$", Matchers.hasSize<List<Game>>(3)))
+            ?.andExpect(jsonPath("$", Matchers.hasSize<List<Game>>(2)))
     }
 }

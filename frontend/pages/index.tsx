@@ -10,7 +10,7 @@ export default function Home() {
   const [games, setGames] = useState<Array<Game>>([]);
 
   useEffect(() => {
-    fetch("http://192.168.1.110:8080/api/v1/games", { method: "GET" })
+    fetch(`http://${process.env.NEXT_PUBLIC_BACKEND_HOST}:${process.env.NEXT_PUBLIC_BACKEND_PORT}/api/v1/games`, { method: "GET" })
       .then(response => response.json())
       .then(jsonResponse => {
         jsonResponse as Array<Game>;
@@ -22,8 +22,8 @@ export default function Home() {
   return (
     <Grid container spacing={3} columns={16}>
       {games.map(game => (
-        <Grid item xs={8} lg={4}>
-          <MediaCard key={game.id} {...game} />
+        <Grid key={game.id} item xs={8} lg={4}>
+          <MediaCard {...game} />
         </Grid>
       ))}
     </Grid>
