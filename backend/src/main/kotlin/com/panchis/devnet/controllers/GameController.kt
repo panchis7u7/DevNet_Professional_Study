@@ -13,35 +13,13 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/api/v1/")
+@CrossOrigin
 class GameController {
 
     @Autowired
     val gameService: IGameService? = null
 
     @GetMapping("/games")
-    @CrossOrigin(
-        // Access-Control-Allow-Origin
-        origins = [ "*" ],
-
-        // Alternative to origins that supports more flexible originpatterns.
-        // Please, see CorsConfiguration.setAllowedOriginPatterns(List)for details.
-        // originPatterns = { "" },
-
-        // Access-Control-Allow-Credentials
-        allowCredentials = "false",
-
-        // Access-Control-Allow-Headers
-        allowedHeaders = [ "*" ],
-
-        // Access-Control-Expose-Headers
-        exposedHeaders = [ "*" ],
-
-        // Access-Control-Max-Age
-        maxAge = 60 * 30,
-
-        // Access-Control-Allow-Methods
-        methods = [RequestMethod.GET, RequestMethod.DELETE, RequestMethod.POST, RequestMethod.PUT]
-    )
     fun getGames(): ResponseEntity<List<Game>> = gameService!!.listAll()
 
 }

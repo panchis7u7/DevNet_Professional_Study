@@ -1,7 +1,7 @@
+import MediaCard from './components/MediaCard';
 import { Inter } from '@next/font/google'
 import { useEffect, useState } from 'react'
 import { Game } from '../models/game';
-import MediaCard from './components/MediaCard';
 import { Grid } from '@mui/material';
 
 const inter = Inter({ subsets: ['latin'] })

@@ -18,4 +18,4 @@ INSERT INTO games (id, title, lastTimePlayed, hoursPlayed, releaseDate, image) V
 
 -- cat <path_to_this_file>/data.sql | sudo docker exec -i <postgres_container_name> psql -U $POSTGRES_USER $POSTGRES_DB
 -- sudo docker exec -it <postgres_container_name> psql -U $POSTGRES_USER -d $POSTGRES_DB -c "SELECT * FROM games;"
--- For compose: cat database/data.sql | sudo docker exec -i devnet-db psql -U $POSTGRES_USER $POSTGRES_DB
+-- For compose: backend

@@ -8,13 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 class WebMvcConfig : WebMvcConfigurer {
     override fun addCorsMappings(registry: CorsRegistry) {
         super.addCorsMappings(registry)
-        registry.addMapping("/*")
-            .allowedOrigins("*")
-            // .allowedOriginPatterns("")
-            .allowCredentials(false)
-            .allowedHeaders("*")
-            .exposedHeaders("*")
-            .maxAge(60 *30)
-            .allowedMethods("*")
+        registry.addMapping("/api/v1/games")
+            .allowedOrigins("http://frontend-host:80", "http://localhost:80", "http://192.168.1.110:80")
     }
 }

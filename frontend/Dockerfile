@@ -5,4 +5,4 @@ RUN apk add --update yarn
 RUN yarn install && yarn build
 ENTRYPOINT [ "yarn" ]
 CMD [ "start" ]
-EXPOSE 3000
+EXPOSE 80
