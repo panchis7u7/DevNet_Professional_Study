@@ -16,6 +16,8 @@ export default function Home() {
         jsonResponse as Array<Game>;
         console.log(jsonResponse)
         setGames(jsonResponse);
+      }).catch(e => {
+        console.log(e)
       })
   }, []);
 

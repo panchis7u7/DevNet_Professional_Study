@@ -1,4 +1,4 @@
-version: '2.14.2'
+version: '3'
 services:
   postgres-db:
     container_name: devnet-db
@@ -38,7 +38,7 @@ services:
     image: devnet-frontend
     stdin_open: true
     ports:
-      - 80:80
+      - 80:3000
     networks:
       devnet-app-network:
         aliases:
