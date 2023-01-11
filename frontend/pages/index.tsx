@@ -10,7 +10,7 @@ export default function Home() {
   const [games, setGames] = useState<Array<Game>>([]);
 
   useEffect(() => {
-    fetch(`http://${process.env.NEXT_PUBLIC_BACKEND_HOST}/api/v1/games`, { method: "GET" })
+    fetch(`http://${process.env.NEXT_PUBLIC_BACKEND_HOST}:${process.env.NEXT_PUBLIC_BACKEND_PORT}/api/v1/games`, { method: "GET" })
       .then(response => response.json())
       .then(jsonResponse => {
         jsonResponse as Array<Game>;

@@ -5,7 +5,7 @@ RUN apk add --update yarn
 RUN yarn install && yarn build
 
 FROM nginx:1.23.3-alpine as production-stage
-RUN mkdir /app
-COPY --from=build-stage /app/out /app
-EXPOSE 80
+WORKDIR /usr/share/nginx/html
+COPY --from=build-stage /app/out .
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+EXPOSE 80

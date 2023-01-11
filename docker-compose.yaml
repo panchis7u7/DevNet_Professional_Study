@@ -47,9 +47,11 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - backend
+    ports:
+      - 8081:80
     networks:
       - devnet-app-network
-
+  # host:container
   # NGINX Load Balancer.
   #-------------------------------------------------
   load_balancer:
