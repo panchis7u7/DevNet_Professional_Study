@@ -20,7 +20,10 @@ A pod is the smallest unit, it has a single IP and can contain 1 or more contain
 + Pod and node inter-communication.
 
 ## Ingress.
-+ Does the forwarding to the service.
++ Does external forwarding to the service. (External requests)
++ Ingress -> Service (Internal) -> Pod.
+    + It needs an ingress controller. (Evaluate al rules and manage redirections)
++ For the ingress controller you can use K8s Nginx Ingress Controller,.
 
 ## Config-map. 
 + External configuration to the application.
@@ -119,6 +122,10 @@ kubectl create namespace <name>
 kubectl get namespace
 kubectl api-resources --namespaced=false # Release components that are not bound to a namespace.
 kubectl get configmap -o yaml
+kubectl get all -n <namespace> # Get all the components within a namespace.
+kubectl get ingress {-n <namespace-name> --watch} 
+kubectl describe ingress <name> {-n <namespace-name>}
+kubectl delete pod <pod-name>
 kubectl get nodes
 kubectl cluster-info
 kubectl describe node <node-name>

@@ -1,0 +1,47 @@
+###############################################################################################
+# Postgres DB Deployment.
+###############################################################################################
+
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: postgresdb-deployment
+  namespace: devnet
+  labels:
+    environment: production
+    app: devnet-professional-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: devnet-professional-app # Must match metadata > labels > app.
+  template:
+    metadata:
+      labels:
+        app: postgres-db-pod # Must match spec > template > metadata > labels > app.
+    spec:
+      containers:
+        - name: devnet-postgresdb
+          image: postgres:15.1-alpine
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-user-secret
+                  key: postgres-user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-pass-secret
+                  key: postgres-pass
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-db-secret
+                  key: postgres-db
